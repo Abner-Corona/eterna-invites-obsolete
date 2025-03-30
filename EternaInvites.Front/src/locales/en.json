@@ -1,0 +1,60 @@
+{
+  "heroTitle": "Eterna Invites",
+  "heroSubtitle": "Invitations that create eternal memories",
+  "discoverButton": "Discover",
+
+  "servicesTitle": "Our Services",
+  "services": {
+    "digital": {
+      "title": "Digital Invitations",
+      "description": "Personalized designs that capture the essence of your celebration with interactive and modern options."
+    },
+    "printed": {
+      "title": "Printed Invitations",
+      "description": "Elegant designs in high-quality materials to create a memorable first impression."
+    },
+    "stationery": {
+      "title": "Event Stationery",
+      "description": "Coordinated designs for every element of your event, from menus to programs and thank you notes."
+    }
+  },
+
+  "featuresTitle": "Why Choose Us?",
+  "features": {
+    "design": {
+      "title": "Personalized Design",
+      "description": "Each invitation is unique and specially designed to reflect your style and personality."
+    },
+    "attention": {
+      "title": "Attention to Detail",
+      "description": "We focus on the small details that make your invitation truly special."
+    },
+    "delivery": {
+      "title": "Timely Delivery",
+      "description": "We guarantee that your invitations will be ready with enough time for your special event."
+    }
+  },
+
+  "testimonialsTitle": "What Our Clients Say",
+  "testimonials": {
+    "couple1": {
+      "name": "María and Carlos",
+      "role": "Wedding June 2023",
+      "text": "The invitations exceeded our expectations. The design perfectly captured our personality as a couple."
+    },
+    "person1": {
+      "name": "Laura Méndez",
+      "role": "Quinceañera 2023",
+      "text": "Everyone was impressed with the beautiful invitations. The service was excellent from start to finish."
+    },
+    "couple2": {
+      "name": "Roberto and Ana",
+      "role": "25th Anniversary",
+      "text": "The digital invitations were the perfect solution for our celebration. Easy to share and very elegant."
+    }
+  },
+
+  "ctaTitle": "Make your special moment unforgettable",
+  "ctaSubtitle": "Contact us today to create your perfect invitations",
+  "contactButton": "Contact Us"
+}

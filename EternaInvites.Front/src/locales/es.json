@@ -1,0 +1,60 @@
+{
+  "heroTitle": "Eterna Invites",
+  "heroSubtitle": "Invitaciones que crean recuerdos eternos",
+  "discoverButton": "Descubrir",
+
+  "servicesTitle": "Nuestros Servicios",
+  "services": {
+    "digital": {
+      "title": "Invitaciones Digitales",
+      "description": "Diseños personalizados que capturan la esencia de tu celebración con opciones interactivas y modernas."
+    },
+    "printed": {
+      "title": "Invitaciones Impresas",
+      "description": "Elegantes diseños en materiales de alta calidad para crear una primera impresión memorable."
+    },
+    "stationery": {
+      "title": "Papelería de Evento",
+      "description": "Diseños coordinados para cada elemento de tu evento, desde menús hasta programas y agradecimientos."
+    }
+  },
+
+  "featuresTitle": "¿Por qué elegirnos?",
+  "features": {
+    "design": {
+      "title": "Diseño Personalizado",
+      "description": "Cada invitación es única y diseñada especialmente para reflejar tu estilo y personalidad."
+    },
+    "attention": {
+      "title": "Atención al Detalle",
+      "description": "Nos enfocamos en los pequeños detalles que hacen que tu invitación sea verdaderamente especial."
+    },
+    "delivery": {
+      "title": "Entrega Puntual",
+      "description": "Garantizamos que tus invitaciones estarán listas con tiempo suficiente para tu evento especial."
+    }
+  },
+
+  "testimonialsTitle": "Lo que dicen nuestros clientes",
+  "testimonials": {
+    "couple1": {
+      "name": "María y Carlos",
+      "role": "Boda Junio 2023",
+      "text": "Las invitaciones superaron nuestras expectativas. El diseño capturó perfectamente nuestra personalidad como pareja."
+    },
+    "person1": {
+      "name": "Laura Méndez",
+      "role": "Quinceañera 2023",
+      "text": "Todos quedaron impresionados con las hermosas invitaciones. El servicio fue excelente de principio a fin."
+    },
+    "couple2": {
+      "name": "Roberto y Ana",
+      "role": "Aniversario 25 años",
+      "text": "Las invitaciones digitales fueron la solución perfecta para nuestra celebración. Fáciles de compartir y muy elegantes."
+    }
+  },
+
+  "ctaTitle": "Haz que tu momento especial sea inolvidable",
+  "ctaSubtitle": "Contáctanos hoy para crear tus invitaciones perfectas",
+  "contactButton": "Contáctanos"
+}

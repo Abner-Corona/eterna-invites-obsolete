@@ -1,0 +1,57 @@
+{
+  "name": "eternainvites-front",
+  "version": "0.0.1",
+  "description": "Eterna Invites App",
+  "productName": "Eterna Invites",
+  "author": "Abner-Corona <corona.git.abner@gmail.com>",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "echo \"See package.json => scripts for available tests.\" && exit 0",
+    "dev": "quasar dev",
+    "build": "quasar build",
+    "postinstall": "quasar prepare",
+    "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
+    "lint": "oxlint -c ./.oxlintrc.json \"./src*/**/*.{ts,js,cjs,mjs,vue}\"",
+    "test:unit": "vitest",
+    "test:unit:ci": "vitest run",
+    "test:e2e": "cross-env NODE_ENV=test start-test \"quasar dev\" http-get://127.0.0.1:8080 \"cypress open --e2e\"",
+    "test:e2e:ci": "cross-env NODE_ENV=test start-test \"quasar dev\" http-get://127.0.0.1:8080 \"cypress run --e2e\"",
+    "test:component": "cross-env NODE_ENV=test cypress open --component",
+    "test:component:ci": "cross-env NODE_ENV=test cypress run --component"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.16.17",
+    "axios": "^1.8.4",
+    "pinia": "^3.0.1",
+    "pinia-plugin-persistedstate": "^4.2.0",
+    "quasar": "^2.18.1",
+    "vue": "^3.5.13",
+    "vue-i18n": "^11.1.2",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@intlify/unplugin-vue-i18n": "^6.0.5",
+    "@quasar/app-vite": "^2.2.0",
+    "@quasar/quasar-app-extension-testing-e2e-cypress": "^6.1.0",
+    "@types/node": "^22.13.14",
+    "@vue/test-utils": "^2.4.6",
+    "autoprefixer": "^10.4.21",
+    "cypress": "^14.2.1",
+    "oxlint": "^0.16.3",
+    "prettier": "^3.5.3",
+    "typescript": "~5.8.2",
+    "unplugin-auto-import": "^19.1.2",
+    "unplugin-vue-components": "^28.4.1",
+    "unplugin-vue-macros": "^2.14.5",
+    "unplugin-vue-router": "^0.12.0",
+    "vite-plugin-oxlint": "^1.3.0",
+    "vitest": "^3.0.9"
+  },
+  "engines": {
+    "node": "^28 || ^26 || ^24 || ^22 || ^20 || ^18",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  },
+  "packageManager": "pnpm@10.7.0+sha512.6b865ad4b62a1d9842b61d674a393903b871d9244954f652b8842c2b553c72176b278f64c463e52d40fff8aba385c235c8c9ecf5cc7de4fd78b8bb6d49633ab6"
+}
