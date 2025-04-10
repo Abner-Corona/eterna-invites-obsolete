@@ -6,7 +6,7 @@ using System.Net;
 
 namespace Repository;
 
-public interface ITab_UsuariosRepository
+public interface ITab_UsuariosRepository : _IBaseRepository<Tab_Usuarios>
 {
     /// <summary>
     /// Obtiene un usuario por su nombre de usuario

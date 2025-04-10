@@ -7,8 +7,6 @@ namespace Database;
 public class _Context : DbContext
 
 {
-    public virtual DbSet<Tab_Usuarios> Tab_Usuarios { get; set; }
-
     /// <summary>
     /// Inicializa una nueva instancia de la clase _Context.
     /// </summary>
@@ -38,5 +36,7 @@ public class _Context : DbContext
         modelBuilder.ApplyConfigurationsFromAssembly(assemblyWithConfigurations);
     }
 }
-// add-migration creacion_bd -Project Database -Context _Context -OutputDir Migrations -verbose
+// Add-Migration creacion_bd2 -Project Database -Context _Context -OutputDir Migrations -verbose
+// dotnet ef migrations add creacion_bd2 -p Database -s Server -c _Context --output-dir Migrations --verbose
 // update-database -Context _Context -Project Database -verbose
+// dotnet ef database update -p Database -s Server -c _Context --verbose

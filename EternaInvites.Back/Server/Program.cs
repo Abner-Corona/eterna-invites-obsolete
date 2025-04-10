@@ -4,6 +4,9 @@ using Serilog.Events;
 using Server.Extensions;
 using Serilog.Exceptions;
 using Server.Middleware;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 var todos = "Todos";
 var connection = builder.Configuration.GetConnectionString("MySql");
@@ -18,14 +21,13 @@ builder.Services.AddRepositories();
 builder.Services.AddServices();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(todos, builder =>
+    options.AddPolicy(todos,
+    builder =>
     {
-        builder.AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader();
+
+        builder.WithOrigins("http://localhost:9000", "https://localhost:9000").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
     });
 });
-
 
 builder.Services.AddSwaggerGen(options =>
 {
@@ -72,6 +74,8 @@ builder.Host.UseSerilog((context, configuration) => configuration
         tableName: "Logs"));
 
 
+
+//builder.Services.AddJWTAuth(builder.Configuration["Jwt:Issuer"]!,builder.Configuration["Jwt:Key"]!);
 var app = builder.Build();
 app.UseExceptionHandlingMiddleware();
 // Configure the HTTP request pipeline.
@@ -80,9 +84,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors(todos);
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

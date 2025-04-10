@@ -1,5 +1,6 @@
 using System.Net;
 using Domain.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service;
 
@@ -9,16 +10,14 @@ namespace Server.Controllers;
 public class LoginController : ControllerBase
 {
     private readonly ILoginService _loginService;
-    private readonly ILogger<LoginController> _logger;
 
 
-    public LoginController(ILoginService loginService, ILogger<LoginController> logger)
+    public LoginController(ILoginService loginService)
     {
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         _loginService = loginService ?? throw new ArgumentNullException(nameof(loginService));
     }
-
-    [HttpPost("[action]")]
+    [HttpPost()]
+    [AllowAnonymous]
     public async Task<IActionResult> Login([FromBody] LoginRequest req)
     {
 
@@ -26,5 +25,7 @@ public class LoginController : ControllerBase
         return Ok(response);
 
     }
+
+
 }
 

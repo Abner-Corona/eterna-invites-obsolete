@@ -12,7 +12,8 @@
     "build": "quasar build",
     "postinstall": "quasar prepare",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
-    "lint": "oxlint -c ./.oxlintrc.json \"./src*/**/*.{ts,js,cjs,mjs,vue}\"",
+    "lint": "oxlint -c ./.oxlintrc.json",
+    "lint:fix": "oxlint --fix --fix-suggestions --fix-dangerously -c ./.oxlintrc.json",
     "test:unit": "vitest",
     "test:unit:ci": "vitest run",
     "test:e2e": "cross-env NODE_ENV=test start-test \"quasar dev\" http-get://127.0.0.1:8080 \"cypress open --e2e\"",
@@ -21,37 +22,44 @@
     "test:component:ci": "cross-env NODE_ENV=test cypress run --component"
   },
   "dependencies": {
+    "@lottiefiles/dotlottie-vue": "^0.6.1",
     "@quasar/extras": "^1.16.17",
     "axios": "^1.8.4",
-    "pinia": "^3.0.1",
+    "lottie-web": "^5.12.2",
+    "pinia": "^3.0.2",
     "pinia-plugin-persistedstate": "^4.2.0",
     "quasar": "^2.18.1",
     "vue": "^3.5.13",
-    "vue-i18n": "^11.1.2",
+    "vue-i18n": "^11.1.3",
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.24.0",
     "@intlify/unplugin-vue-i18n": "^6.0.5",
     "@quasar/app-vite": "^2.2.0",
-    "@quasar/quasar-app-extension-testing-e2e-cypress": "^6.1.0",
-    "@types/node": "^22.13.14",
+    "@types/node": "^22.14.0",
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.21",
-    "cypress": "^14.2.1",
-    "oxlint": "^0.16.3",
+    "eslint": "^9.24.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-promise": "^7.2.1",
+    "eslint-plugin-unicorn": "^58.0.0",
+    "oxlint": "^0.16.5",
     "prettier": "^3.5.3",
-    "typescript": "~5.8.2",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.29.1",
     "unplugin-auto-import": "^19.1.2",
     "unplugin-vue-components": "^28.4.1",
     "unplugin-vue-macros": "^2.14.5",
     "unplugin-vue-router": "^0.12.0",
-    "vite-plugin-oxlint": "^1.3.0",
-    "vitest": "^3.0.9"
+    "vite-plugin-checker": "^0.9.1",
+    "vite-plugin-oxlint": "^1.3.1",
+    "vitest": "^3.1.1",
+    "vue-tsc": "^2.2.8"
   },
   "engines": {
     "node": "^28 || ^26 || ^24 || ^22 || ^20 || ^18",
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1"
-  },
-  "packageManager": "pnpm@10.7.0+sha512.6b865ad4b62a1d9842b61d674a393903b871d9244954f652b8842c2b553c72176b278f64c463e52d40fff8aba385c235c8c9ecf5cc7de4fd78b8bb6d49633ab6"
+  }
 }

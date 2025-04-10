@@ -102,6 +102,17 @@ export default defineConfig((ctx) => {
           },
         ],
         ['vite-plugin-oxlint', { configFile: './.oxlintrc.json' }],
+        [
+          'vite-plugin-checker',
+          {
+            vueTsc: true,
+
+            oxc: {
+              lintCommand: 'oxlint -c ./.oxlintrc.json "./src*/**/*.{ts,js,mjs,cjs,vue}"',
+            },
+          },
+          { server: false },
+        ],
       ],
     },
 
@@ -126,7 +137,7 @@ export default defineConfig((ctx) => {
       // directives: [],
 
       // Quasar plugins
-      plugins: [],
+      plugins: ['Notify', 'Dialog', 'LoadingBar', 'LocalStorage', 'SessionStorage'],
     },
 
     animations: 'all', // --- includes all animations

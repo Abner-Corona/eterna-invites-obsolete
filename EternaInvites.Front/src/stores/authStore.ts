@@ -1,13 +1,16 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
-
-export const useAuthStore = defineStore('auth', {
-  state: () => ({
-    token: null,
+class AuthStoreStoreState {
+  token?: string
+}
+export const useAuthStore = defineStore('authStore', {
+  state: (): AuthStoreStoreState => ({
+    token: '',
   }),
 
   getters: {},
 
   actions: {},
+  persist: true,
 })
 
 if (import.meta.hot) {

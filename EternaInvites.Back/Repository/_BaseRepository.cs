@@ -9,10 +9,68 @@ using System.Reflection;
 namespace Repository;
 
 /// <summary>
+/// Interfaz base que define operaciones comunes de acceso a datos para diferentes tipos de entidades
+/// </summary>
+/// <typeparam name="T">Tipo de entidad que deriva de _BaseTable</typeparam>
+public interface _IBaseRepository<T> where T : _BaseTable
+{
+    /// <summary>
+    /// Agrega una nueva entidad a la base de datos
+    /// </summary>
+    /// <param name="item">Entidad a agregar</param>
+    /// <returns>Entidad agregada con ID generado</returns>
+    Task<T> AddAsync(T item);
+
+    /// <summary>
+    /// Elimina suavemente una entidad configurando su estado activo a falso
+    /// </summary>
+    /// <param name="id">ID de la entidad a eliminar</param>
+    /// <returns>Verdadero si la operación fue exitosa, falso en caso contrario</returns>
+    Task<bool> DeleteAsync(ulong id);
+
+    /// <summary>
+    /// Recupera todas las entidades del tipo T
+    /// </summary>
+    /// <param name="activo">Filtrar por estado activo</param>
+    /// <returns>Colección de entidades</returns>
+    Task<IEnumerable<T>> GetAllAsync(bool? activo = true);
+
+    /// <summary>
+    /// Recupera una entidad por su ID
+    /// </summary>
+    /// <param name="id">ID de la entidad</param>
+    /// <param name="activo">Filtrar por estado activo</param>
+    /// <returns>Entidad o null si no se encuentra</returns>
+    Task<T?> GetByIdAsync(ulong id, bool? activo = true);
+
+    /// <summary>
+    /// Obtiene entidades que coinciden con las propiedades del objeto criterio
+    /// </summary>
+    /// <param name="criteria">Objeto anónimo con propiedades que representan columnas y valores para filtrar</param>
+    /// <param name="activo">Filtrar por estado activo</param>
+    /// <returns>Colección de entidades que coinciden con los criterios</returns>
+    Task<IEnumerable<T>> GetByColumnsAsync(object criteria, bool? activo = true);
+
+    /// <summary>
+    /// Obtiene la primera entidad que coincide con las propiedades del objeto criterio
+    /// </summary>
+    /// <param name="criteria">Objeto anónimo con propiedades que representan columnas y valores para filtrar</param>
+    /// <param name="activo">Filtrar por estado activo</param>
+    /// <returns>Primera entidad que coincide con los criterios o null si no se encuentra ninguna</returns>
+    Task<T?> GetFirstByColumnsAsync(object criteria, bool? activo = true);
+
+    /// <summary>
+    /// Actualiza una entidad existente en la base de datos
+    /// </summary>
+    /// <param name="item">Entidad a actualizar</param>
+    /// <returns>Entidad actualizada</returns>
+    Task<T> UpdateAsync(T item);
+}
+/// <summary>
 /// Repositorio base que proporciona operaciones comunes de acceso a datos para diferentes tipos de entidades
 /// </summary>
 /// <typeparam name="T">Tipo de entidad que deriva de _BaseTable</typeparam>
-public class _BaseRepository<T> where T : _BaseTable
+public class _BaseRepository<T> : _IBaseRepository<T> where T : _BaseTable
 {
     protected readonly IDbConnection _conn;
     protected readonly string _tableName;

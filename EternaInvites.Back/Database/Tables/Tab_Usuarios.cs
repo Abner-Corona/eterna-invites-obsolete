@@ -6,8 +6,8 @@ using Dapp = Dapper.Contrib.Extensions;
 
 namespace Database.Tables;
 
-[Table("TabUsuarios")]
-[Dapp.Table("TabUsuarios")]
+[Table("Tab_Usuarios")]
+[Dapp.Table("Tab_Usuarios")]
 public class Tab_Usuarios : _BaseTable
 {
     public string Contrasena { get; set; } = string.Empty;
