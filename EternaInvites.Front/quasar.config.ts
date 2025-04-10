@@ -106,7 +106,6 @@ export default defineConfig((ctx) => {
           'vite-plugin-checker',
           {
             vueTsc: true,
-
             oxc: {
               lintCommand: 'oxlint -c ./.oxlintrc.json "./src*/**/*.{ts,js,mjs,cjs,vue}"',
             },
