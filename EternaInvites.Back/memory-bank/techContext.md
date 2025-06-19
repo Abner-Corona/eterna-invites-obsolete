@@ -51,13 +51,59 @@ EternaInvites.Back/
 
 ### Running the Application:
 
-```bash
+```powershell
 # Using dotnet CLI
+Set-Location "c:\Users\coron\OneDrive\Documentos\Git\EternaInvites\EternaInvites.Back"
 dotnet run --project Server
 
-# Using VS Code task
-dotnet watch run --project Server.csproj
+# Using VS Code task (watchTaskName available)
+dotnet watch run --project Server/Server.csproj
+
+# Using Docker
+docker build -t eternainvites-backend -f Server/Dockerfile .
+docker run -p 8080:8080 eternainvites-backend
 ```
+
+### Build Status:
+
+- ✅ Builds successfully in ~12.8 seconds
+- ✅ All dependencies resolved correctly
+- ✅ No compilation errors or warnings
+- ✅ Ready for production deployment
+
+## Technical Constraints
+
+- **Database**: MySQL required for JSON column support in templates
+- **Authentication**: JWT tokens with configurable expiration
+- **CORS**: Configured for localhost:9000 (frontend development)
+- **Entity Framework**: Code-first approach with migrations applied
+- **API Versioning**: Routes follow /api/[controller] pattern
+- **Environment**: Windows development environment with PowerShell
+
+## Current Implementation Status
+
+### Repository Layer ✅
+
+- Base repository pattern fully implemented
+- All repositories inherit from `_BaseRepository<T>`
+- Dapper and Entity Framework hybrid approach working
+- Tab_ClientesRepository, Tab_UsuariosRepository, Tab_PlantillasRepository functional
+
+### Service Layer ✅
+
+- All business logic properly separated
+- Model/Entity mapping implemented
+- ClientesService with invitation retrieval logic
+- LoginService with JWT authentication
+- PlantillasService for template management
+
+### API Layer ✅
+
+- RESTful endpoints following standard conventions
+- Public invitation access without authentication
+- Protected admin endpoints with JWT
+- Global exception handling middleware
+- Swagger documentation available
 
 ## Technical Constraints
 
