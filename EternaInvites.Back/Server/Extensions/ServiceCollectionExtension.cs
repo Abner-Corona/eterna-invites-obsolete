@@ -31,7 +31,7 @@ public static class ServiceCollectionExtension
                 if (dbContext.Database.GetPendingMigrations().Any())
                 {
 
-                    dbContext.Database.Migrate();
+                    dbContext.Database.MigrateAsync();
                 }
                 // MigrarStores(dbContext);
             }

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Database.Migrations
 {
     /// <inheritdoc />
-    public partial class creacion_bd : Migration
+    public partial class creacion_bd2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -116,7 +116,7 @@ namespace Database.Migrations
             migrationBuilder.InsertData(
                 table: "Tab_Usuarios",
                 columns: new[] { "Id", "Activo", "Contrasena", "FechaCreacion", "Nombre", "Usuario", "Uui" },
-                values: new object[] { 1ul, true, "$2a$06$8LgVmoLjSJ16oDMnI1b4OOseSjip2oqT.EmRfYlAyzc6dZH9mqKGi", new DateTime(2025, 4, 1, 0, 23, 35, 54, DateTimeKind.Local).AddTicks(888), "ADMINISTRADOR", "admin", new Guid("ff17b7e2-c9c7-49ce-82e6-952076ed8197") });
+                values: new object[] { 1ul, true, "$2a$06$Zoti96IgTyK82TVb725/ROaqXIbCpaTkH.drzDvnnLK0rxH7vTDzK", new DateTime(2025, 6, 19, 17, 21, 1, 496, DateTimeKind.Local).AddTicks(2893), "ADMINISTRADOR", "admin", new Guid("a2041f3e-1fa7-40e9-8756-a77bc13e25d3") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tab_Clientes_Url",

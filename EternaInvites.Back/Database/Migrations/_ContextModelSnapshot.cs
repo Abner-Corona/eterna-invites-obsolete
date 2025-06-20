@@ -220,12 +220,12 @@ namespace Database.Migrations
                         {
                             Id = 1ul,
                             Activo = true,
-                            Contrasena = "$2a$06$8LgVmoLjSJ16oDMnI1b4OOseSjip2oqT.EmRfYlAyzc6dZH9mqKGi",
-                            FechaCreacion = new DateTime(2025, 4, 1, 0, 23, 35, 54, DateTimeKind.Local).AddTicks(888),
-                            FechaModificacion = new DateTime(2025, 4, 1, 0, 23, 35, 54, DateTimeKind.Local).AddTicks(903),
+                            Contrasena = "$2a$06$Zoti96IgTyK82TVb725/ROaqXIbCpaTkH.drzDvnnLK0rxH7vTDzK",
+                            FechaCreacion = new DateTime(2025, 6, 19, 17, 21, 1, 496, DateTimeKind.Local).AddTicks(2893),
+                            FechaModificacion = new DateTime(2025, 6, 19, 17, 21, 1, 496, DateTimeKind.Local).AddTicks(2914),
                             Nombre = "ADMINISTRADOR",
                             Usuario = "admin",
-                            Uui = new Guid("ff17b7e2-c9c7-49ce-82e6-952076ed8197")
+                            Uui = new Guid("a2041f3e-1fa7-40e9-8756-a77bc13e25d3")
                         });
                 });
 #pragma warning restore 612, 618

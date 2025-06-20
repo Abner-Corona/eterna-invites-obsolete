@@ -15,7 +15,7 @@ public class _Context : DbContext
         : base(opciones)
     {
         // Asegura la existencia de la base de datos.
-        Database.EnsureCreated();
+        // Database.EnsureCreated();
     }
 
     /// <summary>

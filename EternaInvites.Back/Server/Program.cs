@@ -8,8 +8,25 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 var builder = WebApplication.CreateBuilder(args);
+
+// Load .env from project root (only if file exists)
+var envPath = Path.Combine(Directory.GetCurrentDirectory(), ".env");
+if (File.Exists(envPath))
+{
+    DotNetEnv.Env.Load(envPath);
+    Console.WriteLine($"✅ Loaded .env file from: {envPath}");
+}
+else
+{
+    Console.WriteLine("No .env file found, using environment variables from container");
+    Console.WriteLine($"   Searched path: {envPath}");
+}
+
 var todos = "Todos";
-var connection = builder.Configuration.GetConnectionString("MySql");
+var connection = Environment.GetEnvironmentVariable("CONNECTIONSTRING_MYSQL")
+    ?? "Server=eternainvites-mysql;Port=3306;Database=eternainvites;User Id=eternauser;Password=eterna123;SslMode=none;AllowPublicKeyRetrieval=True;";
+
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -81,9 +98,10 @@ app.UseExceptionHandlingMiddleware();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+
 }
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseCors(todos);
 
 app.UseHttpsRedirection();

@@ -1,0 +1,44 @@
+FROM mysql:8.0-oracle
+
+# Set default environment variables for MySQL (will be overridden by compose)
+ENV MYSQL_ROOT_PASSWORD=root123
+ENV MYSQL_DATABASE=eternainvites
+ENV MYSQL_USER=eternauser
+ENV MYSQL_PASSWORD=eterna123
+
+# Install additional tools
+RUN microdnf update && \
+    microdnf install -y procps-ng && \
+    microdnf clean all
+
+# Expose MySQL ports
+EXPOSE 3306 33060
+
+# Create directories for MySQL logs and initialization scripts
+RUN mkdir -p /var/log/mysql /docker-entrypoint-initdb.d && \
+    chown -R mysql:mysql /var/log/mysql
+
+# Create initialization script for remote user access
+RUN echo "-- Create application user with proper privileges" > /docker-entrypoint-initdb.d/01-remote-user.sql && \
+    echo "CREATE USER IF NOT EXISTS 'eternauser'@'%' IDENTIFIED WITH mysql_native_password BY 'eterna123';" >> /docker-entrypoint-initdb.d/01-remote-user.sql && \
+    echo "GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES ON eternainvites.* TO 'eternauser'@'%';" >> /docker-entrypoint-initdb.d/01-remote-user.sql && \
+    echo "" >> /docker-entrypoint-initdb.d/01-remote-user.sql && \
+    echo "-- Allow root remote access (only for development)" >> /docker-entrypoint-initdb.d/01-remote-user.sql && \
+    echo "CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'root123';" >> /docker-entrypoint-initdb.d/01-remote-user.sql && \
+    echo "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;" >> /docker-entrypoint-initdb.d/01-remote-user.sql && \
+    echo "" >> /docker-entrypoint-initdb.d/01-remote-user.sql && \
+    echo "-- Create monitoring user (optional)" >> /docker-entrypoint-initdb.d/01-remote-user.sql && \
+    echo "CREATE USER IF NOT EXISTS 'monitor'@'%' IDENTIFIED WITH mysql_native_password BY 'monitor123';" >> /docker-entrypoint-initdb.d/01-remote-user.sql && \
+    echo "GRANT PROCESS, REPLICATION CLIENT, SELECT ON *.* TO 'monitor'@'%';" >> /docker-entrypoint-initdb.d/01-remote-user.sql && \
+    echo "" >> /docker-entrypoint-initdb.d/01-remote-user.sql && \
+    echo "FLUSH PRIVILEGES;" >> /docker-entrypoint-initdb.d/01-remote-user.sql
+
+# Enhanced health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=5 \
+    CMD mysqladmin ping -h localhost -u root -p$MYSQL_ROOT_PASSWORD --silent || exit 1
+
+# Set proper ownership for MySQL directories
+RUN chown -R mysql:mysql /var/lib/mysql /var/log/mysql
+
+# Use default MySQL entrypoint and command
+CMD ["mysqld"]
