@@ -1,0 +1,81 @@
+FROM nginx:1.25-alpine
+
+# Install additional tools for Alpine
+RUN apk add --no-cache \
+    curl \
+    tzdata \
+    && rm -rf /var/cache/apk/*
+
+# Set timezone
+ENV TZ=UTC
+
+# Create directories for logs and configuration
+RUN mkdir -p /var/log/nginx /etc/nginx/conf.d /var/cache/nginx && \
+    chown -R nginx:nginx /var/log/nginx /var/cache/nginx
+
+# Remove default nginx configuration
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Copy custom nginx configuration
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
+
+# Create custom error pages directory
+RUN mkdir -p /usr/share/nginx/html/errors
+
+# Create custom error pages
+RUN echo '<!DOCTYPE html>' > /usr/share/nginx/html/errors/404.html && \
+    echo '<html>' >> /usr/share/nginx/html/errors/404.html && \
+    echo '<head>' >> /usr/share/nginx/html/errors/404.html && \
+    echo '    <title>404 - Page Not Found</title>' >> /usr/share/nginx/html/errors/404.html && \
+    echo '    <style>' >> /usr/share/nginx/html/errors/404.html && \
+    echo '        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background-color: #f5f5f5; }' >> /usr/share/nginx/html/errors/404.html && \
+    echo '        .error-container { max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }' >> /usr/share/nginx/html/errors/404.html && \
+    echo '        h1 { color: #e74c3c; font-size: 3em; margin-bottom: 20px; }' >> /usr/share/nginx/html/errors/404.html && \
+    echo '        p { color: #666; font-size: 1.2em; }' >> /usr/share/nginx/html/errors/404.html && \
+    echo '    </style>' >> /usr/share/nginx/html/errors/404.html && \
+    echo '</head>' >> /usr/share/nginx/html/errors/404.html && \
+    echo '<body>' >> /usr/share/nginx/html/errors/404.html && \
+    echo '    <div class="error-container">' >> /usr/share/nginx/html/errors/404.html && \
+    echo '        <h1>404</h1>' >> /usr/share/nginx/html/errors/404.html && \
+    echo '        <p>The page you are looking for could not be found.</p>' >> /usr/share/nginx/html/errors/404.html && \
+    echo '        <p><a href="/">Return to Home</a></p>' >> /usr/share/nginx/html/errors/404.html && \
+    echo '    </div>' >> /usr/share/nginx/html/errors/404.html && \
+    echo '</body>' >> /usr/share/nginx/html/errors/404.html && \
+    echo '</html>' >> /usr/share/nginx/html/errors/404.html
+
+RUN echo '<!DOCTYPE html>' > /usr/share/nginx/html/errors/502.html && \
+    echo '<html>' >> /usr/share/nginx/html/errors/502.html && \
+    echo '<head>' >> /usr/share/nginx/html/errors/502.html && \
+    echo '    <title>502 - Service Unavailable</title>' >> /usr/share/nginx/html/errors/502.html && \
+    echo '    <style>' >> /usr/share/nginx/html/errors/502.html && \
+    echo '        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background-color: #f5f5f5; }' >> /usr/share/nginx/html/errors/502.html && \
+    echo '        .error-container { max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }' >> /usr/share/nginx/html/errors/502.html && \
+    echo '        h1 { color: #e74c3c; font-size: 3em; margin-bottom: 20px; }' >> /usr/share/nginx/html/errors/502.html && \
+    echo '        p { color: #666; font-size: 1.2em; }' >> /usr/share/nginx/html/errors/502.html && \
+    echo '    </style>' >> /usr/share/nginx/html/errors/502.html && \
+    echo '</head>' >> /usr/share/nginx/html/errors/502.html && \
+    echo '<body>' >> /usr/share/nginx/html/errors/502.html && \
+    echo '    <div class="error-container">' >> /usr/share/nginx/html/errors/502.html && \
+    echo '        <h1>502</h1>' >> /usr/share/nginx/html/errors/502.html && \
+    echo '        <p>The service is temporarily unavailable.</p>' >> /usr/share/nginx/html/errors/502.html && \
+    echo '        <p>Please try again in a few moments.</p>' >> /usr/share/nginx/html/errors/502.html && \
+    echo '    </div>' >> /usr/share/nginx/html/errors/502.html && \
+    echo '</body>' >> /usr/share/nginx/html/errors/502.html && \
+    echo '</html>' >> /usr/share/nginx/html/errors/502.html
+
+# Create health check endpoint
+RUN echo "OK" > /usr/share/nginx/html/health
+
+# Set proper permissions
+RUN chown -R nginx:nginx /usr/share/nginx/html /var/log/nginx
+
+# Expose HTTP and HTTPS ports
+EXPOSE 80 443
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
+    CMD curl -f http://localhost/health || exit 1
+
+# Start nginx in foreground (run as root to bind to port 80)
+CMD ["nginx", "-g", "daemon off;"]
