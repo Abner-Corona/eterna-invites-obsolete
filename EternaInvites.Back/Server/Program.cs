@@ -10,7 +10,7 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Load .env from project root (only if file exists)
-var envPath = Path.Combine(Directory.GetCurrentDirectory(), ".env");
+var envPath = Path.Combine(Directory.GetCurrentDirectory(), "..", ".env");
 if (File.Exists(envPath))
 {
     DotNetEnv.Env.Load(envPath);
@@ -23,9 +23,17 @@ else
 }
 
 var todos = "Todos";
-var connection = Environment.GetEnvironmentVariable("CONNECTIONSTRING_MYSQL")
-    ?? "Server=eternainvites-mysql;Port=3306;Database=eternainvites;User Id=eternauser;Password=eterna123;SslMode=none;AllowPublicKeyRetrieval=True;";
+var connection = Environment.GetEnvironmentVariable("CONNECTIONSTRING_MYSQL");
 
+if (string.IsNullOrEmpty(connection))
+{
+    Console.WriteLine("❌ CONNECTIONSTRING_MYSQL environment variable is not set.");
+    return;
+}
+else
+{
+    Console.WriteLine($"✅ Using connection string: {connection}");
+}
 
 // Add services to the container.
 

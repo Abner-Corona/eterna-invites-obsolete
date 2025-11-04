@@ -1,0 +1,110 @@
+
+  .q-header {
+    box-shadow: none;
+  }
+
+  // Header transition styles
+  .header-transition {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(0px);
+    background-color: transparent !important;
+    box-shadow: none;
+    border-bottom: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+
+    &.header-scrolled {
+      background-color: rgba(255, 255, 255, 0.98) !important;
+      backdrop-filter: blur(20px);
+      box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.12),
+        0 4px 16px rgba(0, 0, 0, 0.08),
+        0 2px 8px rgba(0, 0, 0, 0.04);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  // Toolbar transition
+  .q-toolbar {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 20px 24px;
+    min-height: 80px;
+
+    &.toolbar-scrolled {
+      padding: 12px 20px;
+      min-height: 64px;
+    }
+  }
+
+  // Title transition
+  .title-transition {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 1.8rem;
+    transform: scale(1);
+
+    &.title-scrolled {
+      font-size: 1.5rem;
+      transform: scale(0.95);
+    }
+  }
+
+  // Icon transition
+  .icon-transition {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 1.8rem;
+    transform: scale(1);
+
+    &.icon-scrolled {
+      font-size: 1.5rem;
+      transform: scale(0.95);
+    }
+  }
+
+  .q-toolbar-title {
+    font-family: 'Metalina', serif;
+
+    .q-icon {
+      font-size: 1.5rem;
+    }
+  }
+
+  .q-btn {
+    text-transform: none;
+    font-weight: 500;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 8px;
+
+    &:hover {
+      background-color: rgba(var(--q-primary-rgb), 0.12);
+      transform: translateY(-1px);
+    }
+  }
+
+  // Navigation button transitions
+  .nav-btn {
+    font-size: 1rem;
+    padding: 12px 20px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 8px;
+
+    &.nav-btn-scrolled {
+      font-size: 0.9rem;
+      padding: 8px 16px;
+    }
+
+    &:hover {
+      background-color: rgba(var(--q-primary-rgb), 0.12);
+      transform: translateY(-2px);
+      box-shadow:
+        0 6px 20px rgba(var(--q-primary-rgb), 0.25),
+        0 3px 10px rgba(var(--q-primary-rgb), 0.15);
+    }
+  }
+
+  // Smooth animation for all interactive elements
+  * {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }

@@ -1,0 +1,114 @@
+.container-2 {
+  width: 100vw;
+  min-height: 100vh;
+  background: rgba(252, 253, 253, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 4rem 0;
+}
+
+.content-section {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.section-title {
+  font-family: 'Metalina', serif;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  line-height: 1.4;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.feature-card {
+  .feature-card-inner {
+    height: 100%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+      border-color: rgba(var(--q-primary-rgb), 0.2);
+    }
+
+    .q-card-section {
+      padding: 2rem;
+
+      .q-icon {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      h3 {
+        color: var(--q-dark);
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        line-height: 1.6;
+      }
+    }
+
+    &:hover .q-icon {
+      transform: scale(1.1);
+    }
+  }
+}
+
+// Mobile adjustments
+@media (max-width: 768px) {
+  .container-2 {
+    padding: 2rem 0;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .feature-card {
+    .feature-card-inner {
+      .q-card-section {
+        padding: 1.5rem;
+
+        .q-icon {
+          font-size: 2.5rem !important;
+        }
+      }
+    }
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.1rem;
+  }
+}
+
+// Animation improvements
+.feature-card-inner {
+  will-change: transform, box-shadow;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}

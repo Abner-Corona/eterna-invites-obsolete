@@ -1,0 +1,34 @@
+{
+  "projectPatterns": {
+    "componentStructure": {
+      "animationComponents": "Self-contained with customizable props and SCSS styling",
+      "vueComponents": "Use <script setup> with TypeScript and proper prop validation"
+    },
+    "namingConventions": {
+      "components": "PascalCase (e.g., Petalos.vue)",
+      "props": "camelCase with descriptive names",
+      "cssClasses": "kebab-case"
+    },
+    "styling": {
+      "cssVariables": "Use CSS variables for dynamic theming",
+      "scssNesting": "Keep nesting to 3 levels maximum",
+      "animations": "Use keyframes with descriptive names"
+    }
+  },
+  "codeGuidelines": {
+    "props": "All props should have type definitions, default values when applicable, and validators for constrained values",
+    "typescript": "Use explicit typing for function parameters and return values",
+    "css": "Use transform and opacity for animations when possible for better performance"
+  },
+  "knownPatterns": {
+    "animations": {
+      "petalAnimation": "Uses 3D transforms with varying patterns for natural movement",
+      "directionControl": "Can be reversed using the 'reverse-direction' class"
+    }
+  },
+  "projectOrganization": {
+    "componentCategories": {
+      "invitaciones": "Components specific to invitation display and customization"
+    }
+  }
+}

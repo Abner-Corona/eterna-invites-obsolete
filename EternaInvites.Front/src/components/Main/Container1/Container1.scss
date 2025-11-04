@@ -1,0 +1,115 @@
+.container-1 {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(
+      0deg,
+      rgba(252, 253, 253, 1) 0%,
+      rgba(228, 237, 241, 1) 20%,
+      rgba(171, 212, 231, 1) 100%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: visible !important;
+
+    .left-side-container {
+      position: relative;
+      justify-content: center !important;
+      align-items: center;
+      padding: 3rem 2rem;
+      overflow: visible !important;
+    }
+
+    .stacked-images-container {
+      position: relative;
+      width: 30vmin;
+      height: 45vmin;
+      perspective: 1000px;
+      overflow: visible !important;
+      margin: 0 auto;
+      transform: translateX(-15px);
+    }
+
+    .stacked-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform-origin: center bottom;
+      transform-style: preserve-3d;
+      overflow: visible !important;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .invitation-card {
+      transition: all 0.2s ease-out;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      will-change: transform, box-shadow;
+
+      &:hover {
+        transform: translateY(-4px) scale(1.02) !important;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        z-index: 1000 !important;
+      }
+    }
+
+    .content-section {
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-family: 'Metalina', serif;
+      font-weight: bold;
+      line-height: 1.2;
+    }
+
+    .hero-subtitle {
+      line-height: 1.4;
+      opacity: 0.9;
+    }
+
+    .search-input {
+      .q-field__control {
+        border-radius: 12px;
+        background-color: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+      }
+    }
+
+    // Mobile adjustments
+    @media (max-width: 768px) {
+      .left-side-container {
+        justify-content: center !important;
+        padding: 2rem 1rem;
+        overflow: visible !important;
+      }
+
+      .stacked-images-container {
+        width: 40vmin;
+        height: 60vmin;
+        left: 8vw;
+        top: 11vh;
+        transform: translateX(-10px) translateY(30px);
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+        text-align: center;
+      }
+
+      .hero-subtitle {
+        text-align: center;
+      }
+
+      .content-section {
+        text-align: center;
+      }
+    }
+  }

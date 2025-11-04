@@ -1,4 +1,14 @@
 {
+  "header": {
+    "inicio": "Inicio",
+    "plantillas": "Plantillas",
+    "demos": "Demos",
+    "contacto": "Contacto",
+    "navegacion": "Navegación",
+    "idioma": "Idioma",
+    "english": "English",
+    "español": "Español"
+  },
   "main": {
     "heroSubtitle": "Invitaciones que crean recuerdos eternos",
     "heroTitle": "Eterna Invites",
@@ -33,5 +43,11 @@
     "demo3_name": "Aniversario Dorado",
     "demo3_category": "Aniversarios",
     "demo3_description": "Una elegante invitación digital para celebrar años de amor y compromiso"
+  },
+  "contador": {
+    "dias": "Días",
+    "horas": "Horas",
+    "segundos": "Segundos",
+    "minutos": "Minutos"
   }
 }

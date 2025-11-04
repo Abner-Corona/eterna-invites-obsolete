@@ -1,4 +1,14 @@
 {
+  "header": {
+    "inicio": "Home",
+    "plantillas": "Templates",
+    "demos": "Demos",
+    "contacto": "Contact",
+    "navegacion": "Navigation",
+    "idioma": "Language",
+    "english": "English",
+    "español": "Spanish"
+  },
   "main": {
     "heroSubtitle": "Invitations that create eternal memories",
     "heroTitle": "Eterna Invites",
@@ -33,5 +43,11 @@
     "demo3_name": "Golden Anniversary",
     "demo3_category": "Anniversaries",
     "demo3_description": "An elegant digital invitation to celebrate years of love and commitment"
+  },
+  "contador": {
+    "dias": "Days",
+    "horas": "Hours",
+    "segundos": "Seconds",
+    "minutos": "Minutes"
   }
 }

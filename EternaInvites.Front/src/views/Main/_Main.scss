@@ -1,0 +1,33 @@
+ // Custom layout without header padding
+ .no-header-padding {
+    :deep(.q-page-container) {
+      padding-top: 0 !important;
+      min-height: 100vh !important;
+    }
+
+    :deep(.q-page) {
+      padding-top: 0 !important;
+      margin-top: 0 !important;
+    }
+  }
+
+  .no-padding {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  // Remove default header spacing
+  :deep(.q-layout) {
+    .q-page-container {
+      padding-top: 0 !important;
+
+      .q-page {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+      }
+    }
+  }
+
+  h1 {
+    font-family: 'Metalina', serif;
+  }

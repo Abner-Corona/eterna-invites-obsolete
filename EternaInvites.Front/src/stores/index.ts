@@ -31,3 +31,7 @@ export default defineStore((/* { ssrContext } */) => {
 
   return pinia
 })
+
+// Export individual stores
+export { useMainStore } from './mainStore'
+export { useAuthStore } from './authStore'

@@ -4,6 +4,7 @@
 import { defineConfig } from '#q-app/wrappers'
 import { fileURLToPath } from 'node:url'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
+import { VueMcp } from 'vite-plugin-vue-mcp'
 
 export default defineConfig((ctx) => {
   return {
@@ -13,7 +14,7 @@ export default defineConfig((ctx) => {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
-    boot: ['i18n', 'axios'],
+    boot: ['i18n', 'axios', 'vueuse'],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#css
     css: ['app.scss'],
@@ -81,6 +82,12 @@ export default defineConfig((ctx) => {
             include: [fileURLToPath(new URL('./src/i18n', import.meta.url))],
           },
         ],
+        // [
+        //   'unplugin-vue-components/vite',
+        //   {
+        //     dts: true,
+        //   },
+        // ],
         [
           'unplugin-auto-import/vite',
           {
@@ -101,6 +108,7 @@ export default defineConfig((ctx) => {
             ],
           },
         ],
+
         ['vite-plugin-oxlint', { configFile: './.oxlintrc.json' }],
         [
           'vite-plugin-checker',
@@ -112,6 +120,8 @@ export default defineConfig((ctx) => {
           },
           { server: false },
         ],
+
+        VueMcp(),
       ],
     },
 
